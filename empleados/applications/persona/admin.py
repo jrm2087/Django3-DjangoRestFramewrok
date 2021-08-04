@@ -18,7 +18,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
         return f'{obj.first_name} {obj.last_name}'
 
     search_fields = ('first_name',)
-    list_filter = ('job', 'habilidades')
+    list_filter = ('departamento', 'job', 'habilidades')
     filter_horizontal = ('habilidades',)
 
 

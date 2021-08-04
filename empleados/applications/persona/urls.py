@@ -1,10 +1,10 @@
 from django.urls import path
 
-
-def perApp(self):
-    print('============ App Per ============')
+from . import views
 
 
 urlpatterns = [
-    path('persona/', perApp)
+    path('listar-empleados/', views.ListAllEmpleados.as_view()),
+    path('listar-empleados-area/<shorname>/',
+         views.ListByAreaEmpleado.as_view())
 ]
