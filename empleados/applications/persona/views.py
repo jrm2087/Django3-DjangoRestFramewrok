@@ -17,3 +17,14 @@ class ListByAreaEmpleado(ListView):
         area = self.kwargs['shorname']
         lista = Empleado.objects.filter(departamento__shor_name=area.upper())
         return lista
+
+
+class ListEmpleadosByKword(ListView):
+    """ Lista empleados por palabra clave """
+    template_name = 'persona/by_kword.html'
+    context_object_name = 'empleados'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get('kword', '')
+        lista = Empleado.objects.filter(first_name=palabra_clave.upper())
+        return lista
