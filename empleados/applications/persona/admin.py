@@ -7,6 +7,7 @@ admin.site.register(Habilitades)
 
 class EmpleadoAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'first_name',
         'last_name',
         'departamento',

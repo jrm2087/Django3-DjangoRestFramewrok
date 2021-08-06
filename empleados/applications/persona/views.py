@@ -30,3 +30,12 @@ class ListEmpleadosByKword(ListView):
         palabra_clave = self.request.GET.get('kword', '')
         lista = Empleado.objects.filter(first_name=palabra_clave.upper())
         return lista
+
+
+class ListHabilidadesEmpleados(ListView):
+    template_name = 'persona/habilidades.html'
+    context_object_name = 'habilidades'
+
+    def get_queryset(self):
+        empleado = Empleado.objects.get(id=1)
+        return empleado.habilidades.all()
