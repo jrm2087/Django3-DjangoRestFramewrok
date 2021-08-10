@@ -1,7 +1,53 @@
-<h1>Lista de empleados</h1>
+<!-- Plantilla -->
+{% extends 'base.html' %}
 
-<ul>
-    {% for e in object_list %}
-    <li>{{ e }}</li>
-    {% endfor %}
-</ul>
+<!-- Titulo -->
+{% block title %} Listado de Empleados {% endblock title %}
+
+<!-- Contenido -->
+{% block content %}
+
+<!-- Header  -->
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Lista de empleados</h1>
+        <div class="cell grid-x grid-margin-x">
+            <div class="cell large-7">
+                <input type="text" placeholder="Buscar empleado">
+            </div>
+            <div class="cell large-2">
+                <button type="button" class="success button">Buscar</button>
+            </div>
+        </div>
+        <div class="cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="200">Id</th>
+                        <th>Nombres</th>
+                        <th width="150">Apellidos</th>
+                        <th width="150">Departamento</th>
+                        <th width="150">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in object_list %}
+                    <tr>
+                        <td>{{ e.id }}</td>
+                        <td>{{ e.first_name }}</td>
+                        <td>{{ e.last_name }}</td>
+                        <td>{{ e.departamento.name }}</td>
+                        <td>
+                            <a class="button warning" href="#">Ver</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
