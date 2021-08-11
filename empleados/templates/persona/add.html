@@ -16,7 +16,7 @@
             Registrar Persona
         </h2>
         <div class="cell">
-            <form class="cell grid-x grid-margin-x" method="POST">
+            <form class="cell grid-x grid-margin-x" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="cell large-6 ">
                     <label>Nombres:
@@ -41,6 +41,11 @@
                 <div class="cell">
                     <label>Habilidades extras:
                         {{ form.habilidades }}
+                    </label>
+                </div>
+                <div class="cell">
+                    <label>Foto:
+                        {{ form.avatar }}
                     </label>
                 </div>
                 <div class="cell">

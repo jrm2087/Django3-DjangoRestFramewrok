@@ -1,20 +1,56 @@
-<h1>Registrar Departamento</h1>
+<!-- Plantilla -->
+{% extends 'base.html' %}
 
-<form method="post">
-    {% csrf_token %}
-    <h3>Datos Empleados</h3>
-    <p>
-        {{ form.nombre }}
-    </p>
-    <p>
-        {{ form.apellidos }}
-    </p>
-    <h3>Datos de Departamento</h3>
-    <p>
-        {{ form.departamento }}
-    </p>
-    <p>
-        {{ form.shorname }}
-    </p>
-    <button type="submit">Guardar</button>
-</form>
+<!-- Titulo -->
+{% block title %} Registrar Departamento {% endblock title %}
+
+<!-- Contenido -->
+{% block content %}
+
+<!-- Header  -->
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h2 class="cell">
+            Registrar Departamento
+        </h2>
+        <form class="cell callout grid-x grid-margin-x" method="post">
+            {% csrf_token %}
+
+            <h3 class="cell">Datos Empleados</h3>
+
+            <div class="cell large-6 ">
+                <label>Nombres:
+                        {{ form.nombre }}
+                    </label>
+            </div>
+
+            <div class="cell large-6 ">
+                <label>Apellidos:
+                        {{ form.apellidos }}
+                    </label>
+            </div>
+
+            <h3 class="cell">Datos de Departamento</h3>
+
+            <div class="cell large-6 ">
+                <label>Departamento:
+                        {{ form.departamento }}
+                    </label>
+            </div>
+
+            <div class="cell large-6 ">
+                <label>Nombre corto:
+                        {{ form.shorname }}
+                    </label>
+            </div>
+
+            <div class="cell">
+                <button type="submit" class="primary button">Guardar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}
