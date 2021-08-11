@@ -34,6 +34,14 @@ class ListByAreaEmpleado(ListView):
         return lista
 
 
+class ListEmpleadosAdmin(ListView):
+    template_name = 'persona/lista_empleados.html'
+    paginate_by = 10
+    ordering = 'first_name'
+    context_object_name = 'empleados'
+    model = Empleado
+
+
 class ListEmpleadosByKword(ListView):
     """ Lista empleados por palabra clave """
     template_name = 'persona/by_kword.html'
@@ -73,7 +81,7 @@ class EmpleadoCreateView(CreateView):
     model = Empleado
     fields = ['first_name', 'last_name', 'job',
               'departamento', 'habilidades']
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
     def form_valid(self, form):
         empleado = form.save(commit=False)
@@ -87,7 +95,7 @@ class EmpleadoUpdateView(UpdateView):
     model = Empleado
     fields = ['first_name', 'last_name', 'job',
               'departamento', 'habilidades']
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -102,4 +110,4 @@ class EmpleadoUpdateView(UpdateView):
 class EmpleadoDeleteView(DeleteView):
     template_name = 'persona/delete.html'
     model = Empleado
-    success_url = reverse_lazy('persona_app:correcto')
+    success_url = reverse_lazy('persona_app:empleados_admin')
