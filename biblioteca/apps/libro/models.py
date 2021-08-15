@@ -6,6 +6,11 @@ from apps.autor.models import Autor
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+        ordering = ['nombre']
+
     def __str__(self):
         return self.nombre
 
@@ -17,6 +22,11 @@ class Libro(models.Model):
     fecha = models.DateField('Fecha de Lanzamiento')
     portada = models.ImageField(upload_to='portada')
     visitas = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name = 'Libro'
+        verbose_name_plural = 'Libros'
+        ordering = ['titulo']
 
     def __str__(self):
         return self.titulo

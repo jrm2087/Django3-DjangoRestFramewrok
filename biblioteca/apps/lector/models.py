@@ -9,8 +9,13 @@ class Lector(models.Model):
     nacionalidad = models.CharField(max_length=30)
     edad = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = 'Lector'
+        verbose_name_plural = 'Lectores'
+        ordering = ['nombres']
+
     def __str__(self):
-        return f'{self.nombres} - {self.apellidos}'
+        return f'{self.nombres} {self.apellidos}'
 
 
 class Prestamo(models.Model):
@@ -19,6 +24,11 @@ class Prestamo(models.Model):
     fecha_prestamo = models.DateField()
     fecha_devolucion = models.DateField(blank=True, null=True)
     devuelto = models.BooleanField()
+
+    class Meta:
+        verbose_name = 'Prestamo'
+        verbose_name_plural = 'Prestamos'
+        ordering = ['libro']
 
     def __str__(self):
         return self.libro.titulo
