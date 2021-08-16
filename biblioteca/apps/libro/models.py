@@ -2,6 +2,9 @@ from django.db import models
 
 from apps.autor.models import Autor
 
+# managers
+from .managers import LibroManager
+
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
@@ -20,8 +23,10 @@ class Libro(models.Model):
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(max_length=50)
     fecha = models.DateField('Fecha de Lanzamiento')
-    portada = models.ImageField(upload_to='portada')
+    portada = models.ImageField(upload_to='portada', blank=True, null=True)
     visitas = models.PositiveIntegerField()
+
+    objects = LibroManager()
 
     class Meta:
         verbose_name = 'Libro'
