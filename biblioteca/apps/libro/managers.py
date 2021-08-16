@@ -18,3 +18,15 @@ class LibroManager(models.Manager):
             fecha__range=(date1, date2)
         )
         return resultado
+
+    def listar_libros_categorias(self, categoria):
+        return self.filter(
+            categoria__id=categoria
+        ).order_by('titulo')
+
+
+class CategoriaManager(models.Manager):
+    """ Managers para el modelo categoria """
+
+    def categoria_por_autor(self, autor):
+        return self.filter(categoria_libro__autores__id=autor).distinct()

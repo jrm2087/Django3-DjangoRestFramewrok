@@ -3,11 +3,13 @@ from django.db import models
 from apps.autor.models import Autor
 
 # managers
-from .managers import LibroManager
+from .managers import LibroManager, CategoriaManager
 
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50)
+
+    objects = CategoriaManager()
 
     class Meta:
         verbose_name = 'Categoria'
@@ -15,11 +17,12 @@ class Categoria(models.Model):
         ordering = ['nombre']
 
     def __str__(self):
-        return self.nombre
+        return f'({str(self.id)}) {self.nombre}'
 
 
 class Libro(models.Model):
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(
+        Categoria, on_delete=models.CASCADE, related_name='categoria_libro')
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField(max_length=50)
     fecha = models.DateField('Fecha de Lanzamiento')

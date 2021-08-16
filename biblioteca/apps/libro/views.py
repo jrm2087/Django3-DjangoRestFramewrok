@@ -18,3 +18,12 @@ class ListLibros(ListView):
             return Libro.objects.listar_libros_fecha(palabra_clave, f1, f2)
         else:
             return Libro.objects.listar_libros(palabra_clave)
+
+
+class ListLibrosCategorias(ListView):
+    context_object_name = 'lista_libros'
+    template_name = 'libro/lista_categoria.html'
+
+    def get_queryset(self):
+        parametro = 3
+        return Libro.objects.listar_libros_categorias(parametro)
