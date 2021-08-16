@@ -17,7 +17,7 @@ class Categoria(models.Model):
         ordering = ['nombre']
 
     def __str__(self):
-        return f'({str(self.id)}) {self.nombre}'
+        return f'{str(self.id)} - {self.nombre}'
 
 
 class Libro(models.Model):
@@ -37,4 +37,4 @@ class Libro(models.Model):
         ordering = ['titulo']
 
     def __str__(self):
-        return self.titulo
+        return f'{str(self.id)} - {self.titulo}'

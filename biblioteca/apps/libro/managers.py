@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Count
 
 
 class LibroManager(models.Manager):
@@ -24,9 +24,31 @@ class LibroManager(models.Manager):
             categoria__id=categoria
         ).order_by('titulo')
 
+    def add_autor_libro(self, libro_id, autor):
+        libro = self.get(id=libro_id)
+        libro.autores.add(autor)
+        return libro
+
+    def libros_num_prestamos(self):
+        resultado = self.aggregate(
+            num_prestamos=Count('libro_prestamo')
+        )
+        return resultado
+
 
 class CategoriaManager(models.Manager):
     """ Managers para el modelo categoria """
 
     def categoria_por_autor(self, autor):
         return self.filter(categoria_libro__autores__id=autor).distinct()
+
+    def listar_categoria_libros(self):
+        resultado = self.annotate(
+            num_libros=Count('categoria_libro')
+        )
+
+        for r in resultado:
+            print('****************')
+            print(r, r.num_libros)
+
+        return resultado

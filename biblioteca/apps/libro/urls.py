@@ -6,4 +6,6 @@ urlpatterns = [
     path('libros/', views.ListLibros.as_view(), name='libros'),
     path('libros-categorias/', views.ListLibrosCategorias.as_view(),
          name='libros-categorias'),
+    path('libros-detalle/<pk>/', views.LibroDetailView.as_view(),
+         name='libros-detalle'),
 ]
