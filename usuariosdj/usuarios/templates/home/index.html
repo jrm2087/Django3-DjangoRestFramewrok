@@ -15,7 +15,7 @@
 
     <ul>
         <li>Fecha actual: <strong>{{ fecha }}</strong> </li>
-        <li><a href="">Actualizar datos</a></li>
+        <li><a href="{% url 'users_app:update-password' %}">Actualizar datos</a></li>
         <li><a href="{% url 'users_app:user-logout' %}">Cerrar sesión</a></li>
     </ul>
 
