@@ -5,5 +5,8 @@ from . import views
 app_name = 'persona_app'
 
 urlpatterns = [
-    path('personas/', views.listaPersonas.as_view(), name='personas')
+    path('personas/', views.listaPersonas.as_view(), name='personas'),
+    path('api/persona/lista/', views.PersonListApiView.as_view()),
+    path('lista/', views.PersonListView.as_view(), name='lista'),
+    path('api/persona/search/<kword>/', views.PersonSearchApiView.as_view())
 ]
