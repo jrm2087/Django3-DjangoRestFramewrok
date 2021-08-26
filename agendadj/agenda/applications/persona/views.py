@@ -3,7 +3,9 @@ from django.views.generic import ListView, TemplateView
 
 from rest_framework.generics import (
     ListAPIView,
-    CreateAPIView
+    CreateAPIView,
+    RetrieveAPIView,
+    DestroyAPIView
 )
 
 from .models import Person
@@ -42,3 +44,13 @@ class PersonSearchApiView(ListAPIView):
 
 class PersonCreateApiView(CreateAPIView):
     serializer_class = PersonSerializers
+
+
+class PersonDetailAPIView(RetrieveAPIView):
+    serializer_class = PersonSerializers
+    queryset = Person.objects.all()
+
+
+class PersonDeleteView(DestroyAPIView):
+    serializer_class = PersonSerializers
+    queryset = Person.objects.all()
