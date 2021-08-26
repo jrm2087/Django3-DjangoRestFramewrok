@@ -5,7 +5,9 @@ from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
     RetrieveAPIView,
-    DestroyAPIView
+    DestroyAPIView,
+    UpdateAPIView,
+    RetrieveUpdateAPIView
 )
 
 from .models import Person
@@ -52,5 +54,15 @@ class PersonDetailAPIView(RetrieveAPIView):
 
 
 class PersonDeleteView(DestroyAPIView):
+    serializer_class = PersonSerializers
+    queryset = Person.objects.all()
+
+
+class PersonUpdateView(UpdateAPIView):
+    serializer_class = PersonSerializers
+    queryset = Person.objects.all()
+
+
+class PersonRetrieveUpdateView(RetrieveUpdateAPIView):
     serializer_class = PersonSerializers
     queryset = Person.objects.all()
