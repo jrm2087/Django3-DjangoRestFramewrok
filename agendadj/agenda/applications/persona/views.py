@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import (
+    ListAPIView,
+    CreateAPIView
+)
 
 from .models import Person
 
@@ -35,3 +38,7 @@ class PersonSearchApiView(ListAPIView):
         return Person.objects.filter(
             full_name__icontains=kword
         )
+
+
+class PersonCreateApiView(CreateAPIView):
+    serializer_class = PersonSerializers
