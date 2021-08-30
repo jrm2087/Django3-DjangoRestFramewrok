@@ -37,9 +37,13 @@
                 var token = credential.idToken;
 
                 var user = result.user;
+                // recuperar token-user
+                user.getIdToken().then(
+                    function(idToken) {
+                        console.log(idToken)
+                    }).catch(function(error) {
 
-                console.log('***************');
-                console.log(token);
+                })
 
             }).catch((error) => {
 
