@@ -1,11 +1,63 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %} {% block css %} {% endblock css %} {% block js %}
 
-{% load  static %}
+<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-{% block css %}
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
 
-{% endblock css %}
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
 
-{% block js %}
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+
+<script>
+    function login() {
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyBgeYvXUKTrv0NWFXDg3FODKZbFemMbM1w",
+            authDomain: "django-pro-dfbbe.firebaseapp.com",
+            projectId: "django-pro-dfbbe",
+            storageBucket: "django-pro-dfbbe.appspot.com",
+            messagingSenderId: "402772356689",
+            appId: "1:402772356689:web:6e4cdc96de821fba7fd270"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        var provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                /** @type {firebase.auth.OAuthCredential} */
+                var credential = result.credential;
+
+
+                var token = credential.idToken;
+
+                var user = result.user;
+
+                console.log('***************');
+                console.log(token);
+
+            }).catch((error) => {
+
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                var email = error.email;
+
+                var credential = error.credential;
+
+                console.log('================');
+                console.log(error);
+
+            });
+
+
+    }
+</script>
+
 
 {% endblock js %}

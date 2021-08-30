@@ -1,0 +1,19 @@
+<!-- Plantilla base -->
+{% extends 'users/base_users.html' %}
+
+<!-- Archivos estaticos -->
+{% load static %}
+
+<!-- Contenido -->
+{% block content %}
+
+<div style="padding: 2em;">
+    <h1>Ingrese con su cuenta de Google</h1>
+    <div>
+        <button style="padding: 1em; background: red; color: white;" class="" onclick="login()">
+            Ingrese con Gmail
+        </button>
+    </div>
+</div>
+
+{% endblock content %}
