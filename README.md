@@ -73,6 +73,14 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+## _Crear copia de seguridad django_
+```
+python manage.py dumpdata > nombre_copia.json
+```
+## _Volcar información hacia el proyecto_
+```
+python manage.py loaddata nombre_copia.json
+```
 ## _instalar editor_
 ```
 pip install django-ckeditor
