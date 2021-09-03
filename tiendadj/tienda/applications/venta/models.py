@@ -7,6 +7,8 @@ from model_utils.models import TimeStampedModel
 # local apps
 from applications.producto.models import Product
 
+from .managers import SaleDetailManager
+
 
 class Sale(TimeStampedModel):
     """Modelo que representa a una Venta Global"""
@@ -36,8 +38,8 @@ class Sale(TimeStampedModel):
         null=True
     )
     amount = models.DecimalField(
-        'Monto', 
-        max_digits=10, 
+        'Monto',
+        max_digits=10,
         decimal_places=2
     )
     count = models.PositiveIntegerField('Cantidad de Productos')
@@ -67,7 +69,7 @@ class Sale(TimeStampedModel):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="usuario_venta",
-        #editable=False
+        # editable=False
     )
 
     class Meta:
@@ -78,32 +80,33 @@ class Sale(TimeStampedModel):
         return 'Nº [' + str(self.id) + '] - ' + str(self.date_sale)
 
 
-
 class SaleDetail(TimeStampedModel):
     """Modelo que representa a una venta en detalle"""
 
     sale = models.ForeignKey(
-        Sale, 
-        on_delete=models.CASCADE, 
+        Sale,
+        on_delete=models.CASCADE,
         verbose_name='Codigo de Venta'
     )
     product = models.ForeignKey(
-        Product, 
+        Product,
         on_delete=models.CASCADE
     )
     count = models.PositiveIntegerField('Cantidad')
     price_purchase = models.DecimalField(
-        'Precio Compra', 
-        max_digits=10, 
+        'Precio Compra',
+        max_digits=10,
         decimal_places=3
     )
     price_sale = models.DecimalField(
-        'Precio Venta', 
-        max_digits=10, 
+        'Precio Venta',
+        max_digits=10,
         decimal_places=2
     )
     anulate = models.BooleanField(default=False)
     #
+
+    objects = SaleDetailManager()
 
     class Meta:
         verbose_name = 'Detalle Venta'
