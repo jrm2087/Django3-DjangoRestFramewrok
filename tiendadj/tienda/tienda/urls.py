@@ -24,4 +24,5 @@ urlpatterns = [
     re_path('', include('applications.venta.urls')),
     # viewsets
     re_path('', include('applications.producto.routers')),
+    re_path('', include('applications.venta.routers')),
 ]
