@@ -8,5 +8,16 @@ from django.views.generic import (
     TemplateView
 )
 
-class TestPlantilla(TemplateView):
-    template_name = "plantillas/register.html"
+from applications.entrada.models import Entry
+
+
+class HomePageView(TemplateView):
+    template_name = 'home/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+
+        context['portada'] = Entry.objects.entrada_en_portada()
+        context['entradas_home'] = Entry.objects.entradas_en_home()
+        context['entradas_recientes'] = Entry.objects.entradas_recientes()
+        return context

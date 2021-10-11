@@ -3,6 +3,8 @@ from django.conf import settings
 from model_utils.models import TimeStampedModel
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from .managers import EntryManager
+
 
 class Category(TimeStampedModel):
     short_name = models.CharField('Nombre corto', max_length=15, unique=True)
@@ -36,10 +38,13 @@ class Entry(TimeStampedModel):
     resume = models.TextField('Resumen')
     content = RichTextUploadingField('Contenido')
     public = models.BooleanField(default=False)
-    image = models.ImageField('Imagen', upload_to='Entry')
+    image = models.ImageField(
+        'Imagen', upload_to='Entry', blank=True, null=True)
     portada = models.BooleanField(default=False)
     in_home = models.BooleanField(default=False)
     slug = models.SlugField(editable=False, max_length=300)
+
+    objects = EntryManager()
 
     class Meta:
         verbose_name = 'Entrada'
