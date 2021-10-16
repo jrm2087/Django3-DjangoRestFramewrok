@@ -22,11 +22,12 @@
         <!-- bloque llamada a la accion -->
         <div class="cell large-4">
             <div class="card" style="width: 100%;">
-                <img src="https://neunapp.com/media/blog/header16.jpg">
+                <img src="{{ entry.image.url }}">
                 <div class="card-section" style="width: 100%;">
-                    <div class="blog-action">
-                        <a class="button alert" href="#">Agregar a Favoritos</a>
-                    </div>
+                    <form class="blog-action" method="post" action="{% url 'favoritos_app:add-favoritos' entry.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button alert">Agregar a Favoritos</button>
+                    </form>
                 </div>
             </div>
         </div>
